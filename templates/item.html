@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+        <div>
+            <h2>{{item.title}}</h2>
+            <p><strong>{{item.description}}</strong></p>
+            <aside>Created by {{creator.name}}</aside>
+            {% if 'username' in session and session.user_id == creator.id %}
+            <a href="{{url_for('editItem', category=item.cat_name, item=item.title)}}">Edit</a>
+            <a href="{{url_for('deleteItem', category=item.cat_name, item=item.title)}}">Delete</a>
+            {% endif %}
+        </div>
+{% endblock %}

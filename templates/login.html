@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login page</title>
+  <!-- BEGIN Pre-requisites -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+  <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+  </script>
+  <meta name="google-signin-client_id" content="967607226356-61somgc7cqu42i2aaeeo68i6cigm1hmi.apps.googleusercontent.com">
+  <!-- END Pre-requisites -->
+  <script>
+        function start() {
+          gapi.load('auth2', function() {
+            auth2 = gapi.auth2.init({
+              client_id: '967607226356-61somgc7cqu42i2aaeeo68i6cigm1hmi.apps.googleusercontent.com',
+              // Scopes to request in addition to 'profile' and 'email'
+              //scope: 'additional_scope'
+            });
+          });
+        }
+  </script>
+</head>
+<body onload="myFunction()">
+        <div class="g-signin2">
+            Sign in with Google
+        </div>
+        <script>
+          $('.g-signin2').click(function() {
+            // signInCallback defined in step 6.
+            auth2.grantOfflineAccess().then(signInCallback);
+          });
+          function myFunction() {
+            auth2.grantOfflineAccess().then(signInCallback);
+          }
+        </script>
+        <script>
+            function signInCallback(authResult) {
+                    if (authResult['code']) {
+                    
+                        // Hide the sign-in button now that the user is authorized, for example:
+                        $('.g-signin2').attr('style', 'display: none');
+                    
+                        // Send the code to the server
+                        $.ajax({
+                            type: 'POST',
+                            url: '/gconnect?state={{STATE}}',
+                            // Always include an `X-Requested-With` header in every AJAX request,
+                            // to protect against CSRF attacks.
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            contentType: 'application/octet-stream; charset=utf-8',
+                            success: function(result) {
+                                // Handle or verify the server response.
+                                if(result) {
+                                    window.location.href = "/catalog";
+                                } else if (authResult['error']) {
+                                    console.log('There was an error: ' + authResult['error']);
+                                } else {
+                                    console.log("Server call unsuccessful.")
+                                }
+                            },
+                            processData: false,
+                            data: authResult['code']
+                        });
+                    } else {
+                        // There was an error.
+                    }
+                }
+        </script>
+</body>
+</html>

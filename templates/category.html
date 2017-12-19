@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+        <div class="category-list">
+            <h2>Categories</h2>
+            {% for category in categories %}
+                <a href="{{url_for('showItems', category=category.name)}}">{{category.name}}</a>
+            {% endfor %}
+        </div>
+        <div class="item">
+            <!-- If logged in show 'Add Item' hyperlink -->
+            <h2>{{category.name}} Items ({{count}} items)</h2>
+            {% for i in items %}
+                <a href="{{url_for('showItem', category=i.cat_name, item=i.title)}}">
+                    {{i.title}}
+                </a>
+            {% endfor %}
+        </div>
+{% endblock %}
