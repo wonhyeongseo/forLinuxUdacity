@@ -4,6 +4,7 @@
 # Date Completed: 12/15/2017
 # Submitted by: Wonhyeong Seo
 ##########################################
+import os
 import random
 import string
 import json
