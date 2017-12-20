@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 path = os.path.dirname(__file__)
 
-CLIENT_ID = json.loads(open(path+'client_secrets.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open(path+'/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Application"
 
 
