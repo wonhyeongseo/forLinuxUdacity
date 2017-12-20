@@ -17,21 +17,16 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Category, Base, Item, User
 from oauth2client import client
 
-app = Flask(
-    __name__,
-    static_url_path='',
-    static_folder='static',      # to keep the search
-    template_folder='templates'  # within current folder.
-)
+app = Flask(__name__)
 
-CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read()
-    )['web']['client_id']
+path = os.path.dirname(__file__)
+
+CLIENT_ID = json.loads(open(path+'client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Application"
 
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql://catalog:password@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
