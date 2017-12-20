@@ -10,6 +10,7 @@ import string
 import json
 import httplib2
 import requests
+import logging
 from flask import Flask, render_template, redirect, flash
 from flask import make_response, abort, request, jsonify, url_for
 from flask import session as login_session
@@ -17,6 +18,9 @@ from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Category, Base, Item, User
 from oauth2client import client
+
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
 
 app = Flask(__name__)
 
