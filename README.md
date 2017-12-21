@@ -136,13 +136,14 @@ Configure the Uncomplicated Firewall (UFW) to only allow incoming connections fo
 
 ## Setting up Google Oauth client id and client_secrets.json
 Create a new project, and set the authorized javascript origins as the following.
-	* http://XX.XX.XX.XX
-	* Use https://mxtoolbox.com/ReverseLookup.aspx to retrieve your easy to read DNS(<YOUR-DNS> below).
+* http://XX.XX.XX.XX
+* Use https://mxtoolbox.com/ReverseLookup.aspx to retrieve your easy to read DNS(<YOUR-DNS> below).
+
 Set authorized redirect uris as the following.
-	* <YOUR-DNS>/login
-	* <YOUR-DNS>/gconnect
-	* <YOUR-DNS>/catalog
-	* <YOUR-DNS>/oauth2callback
+* <YOUR-DNS>/login
+* <YOUR-DNS>/gconnect
+* <YOUR-DNS>/catalog
+* <YOUR-DNS>/oauth2callback
 Hit the blue `save` button at the bottom.
 Download the client_secret_(weirdstuff) and open it on your text editor. Copy it and paste it in your client_secrets.json in your Github repository which we will make below in a second.
 
