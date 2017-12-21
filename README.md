@@ -133,13 +133,26 @@ Configure the Uncomplicated Firewall (UFW) to only allow incoming connections fo
 	```
 	exit
 	```
+
+## Setting up Google Oauth client id and client_secrets.json
+Create a new project, and set the authorized javascript origins as the following.
+	* http://XX.XX.XX.XX
+	* Use https://mxtoolbox.com/ReverseLookup.aspx to retrieve your easy to read DNS(<YOUR-DNS> below).
+Set authorized redirect uris as the following.
+	* <YOUR-DNS>/login
+	* <YOUR-DNS>/gconnect
+	* <YOUR-DNS>/catalog
+	* <YOUR-DNS>/oauth2callback
+Hit the blue `save` button at the bottom.
+Download the client_secret_(weirdstuff) and open it on your text editor. Copy it and paste it in your client_secrets.json in your Github repository which we will make below in a second.
+
 ## Set up your Catalog App project in Github.
 1. Create a new repository called `forLinuxUdacity`
 2. Clone your existing catalogUdacity project into the new repository.
 3. Rename `application.py` to `__init__.py`, and edit the following lines.
-`engine = create_engine('sqlite:///catalog.db')` to `engine = create_engine('postgresql://catalog:password@localhost/catalog')`
-`app.run(host='0.0.0.0', port=8000)` to `app.run()`
-`'client_secrets.json'` to `'/var/www/FlaskApp/FlaskApp/client_secrets.json'`
+	* `engine = create_engine('sqlite:///catalog.db')` to `engine = create_engine('postgresql://catalog:password@localhost/catalog')`
+	* `app.run(host='0.0.0.0', port=8000)` to `app.run()`
+	* `'client_secrets.json'` to `'/var/www/FlaskApp/FlaskApp/client_secrets.json'`
 4. Edit `database_setup.py` and `fill_catalog.py` the same way as the first line above.
 
 ## Install git, clone and setup your Catalog App project in the virtual machine.
