@@ -133,8 +133,16 @@ Configure the Uncomplicated Firewall (UFW) to only allow incoming connections fo
 	```
 	exit
 	```
- 
-## Install git, clone and setup your Catalog App project.
+## Set up your Catalog App project in Github.
+1. Create a new repository called `forLinuxUdacity`
+2. Clone your existing catalogUdacity project into the new repository.
+3. Rename `application.py` to `__init__.py`, and edit the following lines.
+`engine = create_engine('sqlite:///catalog.db')` to `engine = create_engine('postgresql://catalog:password@localhost/catalog')`
+`app.run(host='0.0.0.0', port=8000)` to `app.run()`
+`'client_secrets.json'` to `'/var/www/FlaskApp/FlaskApp/client_secrets.json'`
+4. Edit `database_setup.py` and `fill_catalog.py` the same way as the first line above.
+
+## Install git, clone and setup your Catalog App project in the virtual machine.
 1. Install Git using `sudo apt-get install git`
 2. Use `cd /var/www` to move to the /var/www directory 
 3. Create the application directory `sudo mkdir FlaskApp`
@@ -142,15 +150,13 @@ Configure the Uncomplicated Firewall (UFW) to only allow incoming connections fo
 5. Clone the Catalog App to the virtual machine `git clone https://github.com/wonhyeongseo/forLinuxUdacity.git`
 6. Rename the project's name `sudo mv ./forLinuxUdacity ./FlaskApp`
 7. Move to the inner FlaskApp directory using `cd FlaskApp`
-8. Rename `server.py` to `__init__.py` using `sudo mv website.py __init__.py`, if `__init__.py` not present.
-9. Edit `database_setup.py` and `fill_catalog.py` to change `engine = create_engine('sqlite:///catalog.db')` to `engine = create_engine('postgresql://catalog:password@localhost/catalog')`, if not already done.
-10. Install pip `sudo apt-get install python-pip`
-11. Use pip to install dependencies -
+8. Install pip `sudo apt-get install python-pip`
+9. Use pip to install dependencies -
 	* `sudo pip install sqlalchemy flask-sqlalchemy psycopg2 bleach requests`
 	* `sudo pip install flask packaging oauth2client redis passlib flask-httpauth`
-13. Install psycopg2 `sudo apt-get -qqy install postgresql python-psycopg2`
-14. Create database schema `sudo python database_setup.py`
-15. Fill database `sudo pip install fill_catalog.py`
+10. Install psycopg2 `sudo apt-get -qqy install postgresql python-psycopg2`
+11. Create database schema `sudo python database_setup.py`
+12. Fill database `sudo pip install fill_catalog.py`
 
 
 ## Configure and Enable a New Virtual Host
