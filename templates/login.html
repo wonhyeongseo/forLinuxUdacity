@@ -24,7 +24,7 @@
         }
   </script>
 </head>
-<body onload="myFunction()">
+<body>
         <div class="g-signin2">
             Sign in with Google
         </div>
@@ -33,9 +33,6 @@
             // signInCallback defined in step 6.
             auth2.grantOfflineAccess().then(signInCallback);
           });
-          function myFunction() {
-            auth2.grantOfflineAccess().then(signInCallback);
-          }
         </script>
         <script>
             function signInCallback(authResult) {
