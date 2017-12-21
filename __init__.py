@@ -4,7 +4,7 @@
 # Date Completed: 12/15/2017
 # Submitted by: Wonhyeong Seo
 ##########################################
-import os
+#import os
 import random
 import string
 import json
@@ -24,9 +24,9 @@ logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
 
 app = Flask(__name__)
 
-path = os.path.dirname(__file__)
+#path = os.path.dirname(__file__)
 
-CLIENT_ID = json.loads(open(path+'/client_secrets.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open('/var/www/FlaskApp/FlaskApp/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Application"
 
 
@@ -61,8 +61,9 @@ def gconnect():
     # If request does not have `X-Requested-With` header, could be a CSRF
     if not request.headers.get('X-Requested-With'):
         abort(403)
-
-    CLIENT_SECRET_FILE = 'client_secrets.json'
+    
+    path = os.path.dirname(__file__)
+    CLIENT_SECRET_FILE = '/var/www/FlaskApp/FlaskApp/client_secrets.json'
 
     # Exchange auth code for access token, refresh token, and ID token
     credentials = client.credentials_from_clientsecrets_and_code(
