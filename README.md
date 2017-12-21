@@ -4,7 +4,7 @@ This is the final project for "Full Stack Web Developer Nanodegree" on Udacity.
 
 In this project, a Linux virtual machine needs to be configurated to support the Item Catalog website.
 
-You can visit http://54.238.238.153/ for the website deployed.
+You can visit http://ec2-54-238-238-153.ap-northeast-1.compute.amazonaws.com/catalog for the website deployed.
 
 ## You may refer this Udacity course
 
